@@ -304,5 +304,7 @@ def serve_clip(job_id, filename):
     return send_from_directory(job_dir, filename, as_attachment=True)
 
 
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+ if __name__ == "__main__":
+    # Railway / cloud: wajib bind ke 0.0.0.0 dan pakai PORT dari environment
+    port = int(os.environ.get("PORT", "5000"))
+    app.run(host="0.0.0.0", port=port, debug=False)
